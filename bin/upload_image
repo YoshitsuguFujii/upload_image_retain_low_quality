@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'upload_image_retain_low_quality'
+
+params = ARGV.getopts('q:f:hd', 'quality:50', 'file_or_dir:./', 'help', 'delete')
+params["quality"] = params["q"].nil? ? params["quality"] : params["q"]
+params["file_or_dir"] = params["f"].nil? ? params["file_or_dir"] : params["d"]
+params["help"] = params["h"].nil? ? params["help"] : params["h"]
+params["delete"] = params["d"].nil? ? params["delete"] : params["d"]
+
+# show help
+if ARGV == ["init"]
+  # aws_congigを生成する処理
+  UploadImageRetainLowQuality::S3.generate_config
+else
+  if params["help"]
+
+#TODO init の説明も追加
+puts <<"HELP_MES"
+upload_image_retain_low_quality version: #{UploadImageRetainLowQuality::VERSION}
+Usage: upload_image_retain_low_quality [-q --quality] [-f --file_or_dir] [-h --help] [-d --delete]
+
+Options:
+  -q            : set down quality percent(default: 50)
+  -f            : set target directory or file(default: current directory)
+  -d            : no backup original image file
+  -h            : this help
+
+HELP_MES
+
+  else
+    UploadImageRetainLowQuality::CLI.run(params)
+  end
+
+end
+
+
