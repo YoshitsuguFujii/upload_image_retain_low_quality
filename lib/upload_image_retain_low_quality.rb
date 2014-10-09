@@ -17,7 +17,7 @@ module UploadImageRetainLowQuality
       # bucketの選択
       s3 = S3.new
       all_buckets = Console.show_item_with_pointer(s3.buckets)
-      idx = Console.gets_from_stdin("select number your glacier folder")
+      idx = Console.gets_from_stdin("select number your bucket")
       s3.bucket = all_buckets[idx]
 
       # ディレクトリの選択

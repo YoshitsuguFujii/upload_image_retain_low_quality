@@ -15,16 +15,27 @@ if ARGV == ["init"]
 else
   if params["help"]
 
-#TODO init の説明も追加
 puts <<"HELP_MES"
 upload_image_retain_low_quality version: #{UploadImageRetainLowQuality::VERSION}
-Usage: upload_image_retain_low_quality [-q --quality] [-f --file_or_dir] [-h --help] [-d --delete]
 
-Options:
-  -q            : set down quality percent(default: 50)
-  -f            : set target directory or file(default: current directory)
-  -d            : no backup original image file
-  -h            : this help
+First Setting:
+  $ upload_image_retain_low_quality ini
+
+  .upload_image_retain_low_qualityrc is created in your current directory
+  open the file with editor
+
+  rewrire your key and secret
+    access_key_id: 'YOUR ACCESS KEY'
+    secret_access_key:  'SECRET ACCESS KEY'
+
+Usage:
+  $ upload_image_retain_low_quality [-q --quality] [-f --file_or_dir] [-h --help] [-d --delete]
+
+  Options:
+    -q            : set down quality percent(default: 50)
+    -f            : set target directory or file(default: current directory)
+    -d            : no backup original image file
+    -h            : this help
 
 HELP_MES
 
